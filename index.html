@@ -1,1 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Page Setup: basic website information -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Ann's Learning Portfolio</title>
+
+  <style>
+    /* ================================
+       STYLE SETTINGS / 格式設定
+       This CSS section controls the overall visual design:
+       colors, layout, spacing, cards, buttons, photo pages,
+       animations, and responsive design.
+    ================================= */
+
+    /* Basic Reset: removes default browser spacing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Smooth scrolling when clicking navigation links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Main body style */
+    body {
+      font-family: "Inter", "Noto Sans TC", Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2933;
+      background-color: #f8f7f3;
+    }
+
+    /* Header: sticky navigation bar at the top */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 247, 243, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd8cc;
+      transition: box-shadow 0.2s ease;
+    }
+
+    /* Navbar layout */
+    .navbar {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo style */
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #172554;
+    }
+
+    /* Navigation links layout */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+    }
+
+    /* Navigation links style */
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+
+    /* Hover effect for navigation links */
+    .nav-links a:hover {
+      color: #1d4ed8;
+    }
+
+    /* Mobile menu button, hidden on desktop */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #172554;
+    }
+
+    /* Hero section with background image */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 24px;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.68), rgba(15, 23, 42, 0.68)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    /* Limits width of hero text */
+    .hero-content {
+      max-width: 820px;
+    }
+
+    /* Small label above hero title */
+    .tagline {
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    /* Main hero title */
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5.2rem);
+      margin-bottom: 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.1;
+    }
+
+    /* Hero introduction text */
+    .hero-text {
+      font-size: 1.15rem;
+      margin-bottom: 38px;
+      color: #e5e7eb;
+    }
+
+    /* Hero button layout */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Main hero button */
+    .hero-button {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #f8f7f3;
+      color: #172554;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    /* Secondary transparent hero button */
+    .hero-button.secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    /* Hover effect for hero buttons */
+    .hero-button:hover {
+      transform: translateY(-3px);
+      background: #dbeafe;
+      color: #172554;
+    }
+
+    /* General section layout */
+    .section {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 90px 24px;
+    }
+
+    /* Light background section */
+    .section-light {
+      max-width: none;
+      background-color: #eef2f7;
+    }
+
+    /* Keeps content inside light sections aligned */
+    .section-light > .section-title,
+    .section-light > .category-grid,
+    .section-light > .content-grid,
+    .section-light > .timeline,
+    .section-light > .reflection-box,
+    .section-light > .photo-list,
+    .section-light > .back-link {
+      max-width: 1150px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Section title area */
+    .section-title {
+      margin-bottom: 46px;
+      text-align: center;
+    }
+
+    /* Small section label */
+    .section-title p {
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    /* Main section heading */
+    .section-title h2 {
+      font-size: 2.25rem;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #111827;
+    }
+
+    /* Intro paragraph under section heading */
+    .section-intro {
+      max-width: 760px;
+      margin: 14px auto 0;
+      color: #4b5563;
+      font-size: 1rem;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    /* Category cards grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    /* Clickable category card */
+    .category-card {
+      background: white;
+      padding: 26px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #1f2933;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-top: 4px solid #172554;
+    }
+
+    /* Hover effect for category cards */
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.13);
+    }
+
+    /* Category card title */
+    .category-card h3 {
+      color: #172554;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    /* Category card text */
+    .category-card p {
+      color: #4b5563;
+      font-size: 0.92rem;
+    }
+
+    /* Content card grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    /* General activity content card */
+    .content-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Hover effect for content cards */
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Content card title */
+    .content-card h3 {
+      color: #172554;
+      margin-bottom: 14px;
+      font-size: 1.18rem;
+    }
+
+    /* Content card description */
+    .content-card p {
+      color: #374151;
+      margin-bottom: 16px;
+    }
+
+    /* Content card tag */
+    .content-card span {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #2563eb;
+      font-weight: 600;
+      background: #eff6ff;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    /* Makes selected content cards clickable */
+    .card-button {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Small text showing card is clickable */
+    .card-button .open-label {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #172554;
+      font-weight: 700;
+    }
+
+    /* Allows some cards to take two columns on large screens */
+    .wide-card {
+      grid-column: span 2;
+    }
+
+    /* Timeline layout */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    /* Each timeline row */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Timeline year label */
+    .timeline-year {
+      font-weight: 700;
+      color: #1d4ed8;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.07);
+    }
+
+    /* Timeline content box */
+    .timeline-content {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      border-left: 5px solid #2563eb;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    /* Timeline content title */
+    .timeline-content h3 {
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    /* Photo page layout */
+    .photo-page {
+      scroll-margin-top: 80px;
+    }
+
+    /* Back link on photo pages */
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Back link hover effect */
+    .back-link:hover {
+      color: #172554;
+    }
+
+    /* Photo list grid */
+    .photo-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    /* Each photo item card */
+    .photo-item {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Photo image size */
+    .photo-item img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      background-color: #dbeafe;
+    }
+
+    /* Caption area under each photo */
+    .photo-caption {
+      padding: 22px;
+    }
+
+    /* Caption title */
+    .photo-caption h3 {
+      color: #172554;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    /* Caption text */
+    .photo-caption p {
+      color: #374151;
+      font-size: 0.95rem;
+    }
+
+    /* Reflection box */
+    .reflection-box {
+      background: white;
+      padding: 36px;
+      border-radius: 22px;
+      border-left: 5px solid #172554;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+      max-width: 850px;
+    }
+
+    /* Reflection title */
+    .reflection-box h3 {
+      margin-bottom: 14px;
+      color: #172554;
+      font-size: 1.35rem;
+    }
+
+    /* Reflection paragraph */
+    .reflection-box p {
+      color: #374151;
+      margin-bottom: 14px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: #111827;
+      color: #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    /* Fade-in initial state */
+    .fade-in,
+    .category-card,
+    .content-card,
+    .timeline-item,
+    .reflection-box,
+    .photo-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    /* Fade-in active state */
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Medium screen layout */
+    @media (max-width: 1000px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .wide-card {
+        grid-column: span 1;
+      }
+    }
+
+    /* Mobile layout */
+    @media (max-width: 850px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 24px;
+        background: white;
+        flex-direction: column;
+        width: 245px;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .category-grid,
+      .content-grid,
+      .photo-list {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-year {
+        width: fit-content;
+      }
+
+      .hero {
+        min-height: 82vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ================================
+       NAVIGATION
+       This section creates the sticky navigation bar.
+  ================================= -->
+  <header class="site-header">
+    <nav class="navbar">
+      <!-- Website logo / name -->
+      <div class="logo">Ann's Portfolio</div>
+
+      <!-- Mobile menu button -->
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <!-- Navigation links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#learning">Journey</a></li>
+        <li><a href="#clubs">Clubs</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#self-study">Self-study</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================================
+       HERO SECTION
+       This is the first section visitors see.
+  ================================= -->
+  <section id="home" class="hero">
+    <div class="hero-content fade-in">
+      <p class="tagline">High School Learning Portfolio</p>
+
+      <h1>Building Direction Through Exploration</h1>
+
+      <p class="hero-text">
+        This website presents my high school learning journey through academics,
+        competitions, research, leadership, community engagement, and self-directed learning.
+        It records not only what I have done, but also how I learned to question, connect, and grow.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#categories" class="hero-button">Explore My Portfolio</a>
+        <a href="#reflection" class="hero-button secondary">Read My Reflection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PORTFOLIO CATEGORIES
+       This section works like a map of the website.
+  ================================= -->
+  <section id="categories" class="section section-light">
+    <div class="section-title">
+      <p>Portfolio Map</p>
+      <h2>Explore by Category</h2>
+      <p class="section-intro">
+        Each category represents a different part of my high school experience:
+        academic growth, student organizations, service, achievements, and independent learning.
+      </p>
+    </div>
+
+    <div class="category-grid">
+      <!-- Category Card: My Learning Journey -->
+      <a href="#learning" class="category-card">
+        <h3>My Learning Journey</h3>
+        <p>Academic growth, research interests, and intellectual development.</p>
+      </a>
+
+      <!-- Category Card: Clubs -->
+      <a href="#clubs" class="category-card">
+        <h3>Clubs</h3>
+        <p>Debate, TEDxYouth, teamwork, and student-led initiatives.</p>
+      </a>
+
+      <!-- Category Card: Community -->
+      <a href="#community" class="category-card">
+        <h3>Community</h3>
+        <p>Tutoring, content creation, policy forum, and projects that connect with others.</p>
+      </a>
+
+      <!-- Category Card: Academic Awards -->
+      <a href="#awards" class="category-card">
+        <h3>Academic Awards</h3>
+        <p>Competitions, language achievements, and academic recognition.</p>
+      </a>
+
+      <!-- Category Card: Self-study -->
+      <a href="#self-study" class="category-card">
+        <h3>Self-study</h3>
+        <p>Independent preparation, online learning, and personal projects.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================================
+       MY LEARNING JOURNEY
+       This section uses a timeline to show academic growth.
+  ================================= -->
+  <section id="learning" class="section">
+    <div class="section-title">
+      <p>Category One</p>
+      <h2>My Learning Journey</h2>
+      <p class="section-intro">
+        My learning journey began with broad curiosity and gradually became more focused on
+        economics, finance, mathematics, research, and the use of data to understand real-world problems.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <!-- Timeline Item: Grade 10 -->
+      <div class="timeline-item">
+        <div class="timeline-year">Grade 10</div>
+        <div class="timeline-content">
+          <h3>Building Academic Foundations</h3>
+          <p>
+            I started exploring different academic interests, especially economics, mathematics,
+            language learning, and communication. At this stage, I was still discovering how my interests could connect.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline Item: Grade 11 -->
+      <div class="timeline-item">
+        <div class="timeline-year">Grade 11</div>
+        <div class="timeline-content">
+          <h3>Deepening Exploration</h3>
+          <p>
+            I challenged myself through AP courses, standardized tests, economics competitions,
+            and independent research. I became increasingly interested in using economic reasoning
+            and empirical methods to analyze social issues.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline Item: Grade 12 -->
+      <div class="timeline-item">
+        <div class="timeline-year">Grade 12</div>
+        <div class="timeline-content">
+          <h3>Connecting Knowledge to Direction</h3>
+          <p>
+            I began connecting my academic interests with future goals in economics, finance,
+            and research. My learning became less about collecting achievements and more about
+            developing a clearer intellectual direction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       CLUBS
+       This section presents club-related activities.
+  ================================= -->
+  <section id="clubs" class="section section-light">
+    <div class="section-title">
+      <p>Category Two</p>
+      <h2>Clubs</h2>
+      <p class="section-intro">
+        Clubs gave me the chance to practice leadership, communication, teamwork, and public expression
+        beyond the classroom.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <!-- Content Card Button: Debate
+           This card is clickable. It leads to the Debate photo page.
+      -->
+      <a href="#debate-page" class="content-card card-button">
+        <h3>Debate</h3>
+        <p>
+          Debate trained me to build arguments, analyze evidence, respond to opposing views,
+          and communicate complex ideas under pressure. It also strengthened my confidence in public speaking.
+        </p>
+        <span>Argumentation · Public Speaking</span>
+        <div class="open-label">View Photos →</div>
+      </a>
+
+      <!-- Content Card Button: TEDxYouth Event Planning
+           This card is clickable. It leads to the TEDxYouth photo page.
+      -->
+      <a href="#tedx-page" class="content-card card-button">
+        <h3>TEDxYouth Event Planning</h3>
+        <p>
+          Through TEDxYouth, I participated in theme development, event planning, and team coordination.
+          The process helped me think about how stories, ideas, and student voices can inspire a wider audience.
+        </p>
+        <span>Leadership · Event Planning</span>
+        <div class="open-label">View Photos →</div>
+      </a>
+
+      <!-- Content Card: Business Case Teamwork
+           This card introduces teamwork and strategy experience.
+      -->
+      <div class="content-card">
+        <h3>Business Case Teamwork</h3>
+        <p>
+          In business case activities, I learned how to work with teammates, evaluate proposals,
+          and balance creativity with feasibility. These experiences helped me understand leadership in uncertain situations.
+        </p>
+        <span>Teamwork · Strategy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       COMMUNITY
+       This section presents service, outreach, and public engagement.
+  ================================= -->
+  <section id="community" class="section">
+    <div class="section-title">
+      <p>Category Three</p>
+      <h2>Community</h2>
+      <p class="section-intro">
+        My community-related activities focus on education, communication, public issues,
+        and making knowledge more accessible to others.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <!-- Content Card: English Tutoring
+           This card introduces English teaching and communication experience.
+      -->
+      <div class="content-card">
+        <h3>English Tutoring</h3>
+        <p>
+          I taught English to younger students and learned how to explain concepts clearly,
+          adjust to different learning levels, and make lessons more engaging.
+        </p>
+        <span>Teaching · Communication</span>
+      </div>
+
+      <!-- Content Card Button: Policy Forum
+           This card is clickable. It leads to the Policy Forum photo page.
+      -->
+      <a href="#policy-forum-page" class="content-card card-button">
+        <h3>Policy Forum</h3>
+        <p>
+          Through the policy forum, I explored public issues, youth participation,
+          and how students can transform ideas into proposals with social relevance.
+        </p>
+        <span>Public Issues · Youth Participation</span>
+        <div class="open-label">View Photos →</div>
+      </a>
+
+      <!-- Content Card: Japanese Translation Content
+           This card introduces translation and bilingual content creation.
+      -->
+      <div class="content-card">
+        <h3>Japanese Translation Content</h3>
+        <p>
+          I created bilingual subtitle content to make Japanese media and language learning more accessible.
+          This project allowed me to combine language learning, translation, and digital communication.
+        </p>
+        <span>Language · Digital Content</span>
+      </div>
+
+      <!-- Content Card: Educational Content Creation
+           This card introduces educational social media and outreach.
+      -->
+      <div class="content-card wide-card">
+        <h3>Educational Content Creation</h3>
+        <p>
+          I explored ways to present academic and language-related ideas through social media.
+          This helped me think about how knowledge can be shared in a clear, visual, and approachable way.
+        </p>
+        <span>Creativity · Outreach</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       ACADEMIC AWARDS
+       This section presents competitions and academic achievements.
+  ================================= -->
+  <section id="awards" class="section section-light">
+    <div class="section-title">
+      <p>Category Four</p>
+      <h2>Academic Awards</h2>
+      <p class="section-intro">
+        These achievements reflect the areas where I challenged myself academically:
+        economics, debate, language learning, and standardized academic preparation.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <!-- Content Card Button: Taiwan Economics Olympiad
+           This card is clickable. It leads to the TEO photo page.
+      -->
+      <a href="#teo-page" class="content-card card-button">
+        <h3>Taiwan Economics Olympiad</h3>
+        <p>
+          I participated in the Taiwan Economics Olympiad, where I engaged with economics,
+          finance, and business case analysis. The experience strengthened my ability to apply
+          theory to real-world problems.
+        </p>
+        <span>Economics · Finance</span>
+        <div class="open-label">View Photos →</div>
+      </a>
+
+      <!-- Content Card: National Debate Championships
+           This card presents debate competition achievements.
+      -->
+      <div class="content-card">
+        <h3>National Debate Championships</h3>
+        <p>
+          Debate competitions helped me develop logical reasoning, evidence-based argumentation,
+          and persuasive communication. They also shaped how I approach disagreement and collaboration.
+        </p>
+        <span>Debate · Critical Thinking</span>
+      </div>
+
+      <!-- Content Card: Language Achievements
+           This card presents TOEFL and JLPT-related achievements.
+      -->
+      <div class="content-card">
+        <h3>Language Achievements</h3>
+        <p>
+          My language learning journey includes achievements such as TOEFL and JLPT preparation.
+          These experiences reflect my long-term interest in communication across cultures.
+        </p>
+        <span>TOEFL · JLPT</span>
+      </div>
+
+      <!-- Content Card: AP and Standardized Test Preparation
+           This card presents exam preparation, discipline, and academic challenge.
+      -->
+      <div class="content-card wide-card">
+        <h3>AP and Standardized Test Preparation</h3>
+        <p>
+          Preparing for rigorous exams trained my discipline, time management, and ability to learn under pressure.
+          More importantly, it pushed me to connect classroom knowledge with broader academic interests.
+        </p>
+        <span>AP · SAT · Academic Discipline</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       SELF-STUDY
+       This section presents independent research and online learning.
+  ================================= -->
+  <section id="self-study" class="section">
+    <div class="section-title">
+      <p>Category Five</p>
+      <h2>Self-study</h2>
+      <p class="section-intro">
+        Self-study has been one of the most important parts of my high school experience.
+        It allowed me to go beyond school requirements and pursue questions that genuinely interested me.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <!-- Content Card: Independent Research on Taiwan's Fertility Decline
+           This card presents econometrics and social issue research.
+      -->
+      <div class="content-card">
+        <h3>Independent Research on Taiwan's Fertility Decline</h3>
+        <p>
+          I explored Taiwan's fertility decline through a time-series econometric approach,
+          examining how economic and social factors may be associated with changes in birth patterns.
+        </p>
+        <span>Research · Econometrics</span>
+      </div>
+
+      <!-- Content Card: Finance and ETF Research
+           This card presents finance research on ETFs and valuation mismatch.
+      -->
+      <div class="content-card">
+        <h3>Finance and ETF Research</h3>
+        <p>
+          I studied passive investing, ETF inclusion, valuation mismatch, and how market mechanisms
+          may influence stock prices beyond company fundamentals.
+        </p>
+        <span>Finance · Market Analysis</span>
+      </div>
+
+      <!-- Content Card: Company and Platform Strategy Analysis
+           This card presents business strategy analysis.
+      -->
+      <div class="content-card">
+        <h3>Company and Platform Strategy Analysis</h3>
+        <p>
+          I analyzed companies such as Apple, Netflix, Spotify, and Google Play through business strategy frameworks,
+          comparing their positioning, ecosystems, and competitive advantages.
+        </p>
+        <span>Business Strategy · Platforms</span>
+      </div>
+
+      <!-- Content Card: Online Learning
+           This card presents online courses and independent academic materials.
+      -->
+      <div class="content-card">
+        <h3>Online Learning</h3>
+        <p>
+          I used online courses and independent materials to explore finance, psychology, computer science,
+          and other subjects that supported my academic development.
+        </p>
+        <span>Coursera · Independent Learning</span>
+      </div>
+
+      <!-- Content Card: Language Self-study
+           This card presents Japanese and English self-study.
+      -->
+      <div class="content-card wide-card">
+        <h3>Language Self-study</h3>
+        <p>
+          I studied Japanese and English independently through vocabulary systems, reading practice,
+          speaking preparation, translation, and real communication. Language learning became both
+          a personal interest and a way to connect with different cultures.
+        </p>
+        <span>Japanese · English · Translation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       DEBATE PHOTO PAGE
+       This page appears when users click the Debate card.
+       Replace image/debate-1.jpg with your own GitHub image path.
+  ================================= -->
+  <section id="debate-page" class="section section-light photo-page">
+    <div class="section-title">
+      <p>Photo Gallery</p>
+      <h2>Debate</h2>
+      <p class="section-intro">
+        This page records my debate experiences through photos, captions, and short reflections.
+      </p>
+    </div>
+
+    <a href="#clubs" class="back-link">← Back to Clubs</a>
+
+    <div class="photo-list">
+      <!-- Debate Photo 1 -->
+      <div class="photo-item">
+        <img src="image/debate-1.jpg" alt="Debate photo 1">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Write a short caption here. You can describe the event, your role, what happened,
+            or what you learned from this moment.
+          </p>
+        </div>
+      </div>
+
+      <!-- Debate Photo 2 -->
+      <div class="photo-item">
+        <img src="image/debate-2.jpg" alt="Debate photo 2">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add another caption here. This space can explain your preparation, teamwork,
+            or a specific round that was meaningful to you.
+          </p>
+        </div>
+      </div>
+
+      <!-- Debate Photo 3 -->
+      <div class="photo-item">
+        <img src="image/debate-3.jpg" alt="Debate photo 3">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a reflection here. You can write about argumentation, public speaking,
+            confidence, or learning from disagreement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+       <!-- TEO Photo 1 -->
+      <div class="photo-item">
+         <img src="image/IMG_2496.JPG" alt="Taiwan Economics Olympiad Gold Award Certificate">
+         <div class="photo-caption">
+          <h3>Gold Award Certificate</h3>
+          <p>
+            I received a Gold Award in the 2026 Taiwanese Economics Olympiad.
+            This certificate represents one of my most meaningful academic experiences in economics.
+          </p>
+        </div>
+      </div>
+
+      <!-- TEO Photo 2 -->
+      <div class="photo-item">
+        <img src="image/teo-2.jpg" alt="Taiwan Economics Olympiad photo 2">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a caption here. You can explain how this experience helped you apply economic theory
+            to real-world problems.
+          </p>
+        </div>
+      </div>
+
+      <!-- TEO Photo 3 -->
+      <div class="photo-item">
+        <img src="image/teo-3.jpg" alt="Taiwan Economics Olympiad photo 3">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a short reflection about problem-solving, business case analysis, or teamwork.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       TEDX PHOTO PAGE
+       This page appears when users click the TEDxYouth card.
+  ================================= -->
+  <section id="tedx-page" class="section section-light photo-page">
+    <div class="section-title">
+      <p>Photo Gallery</p>
+      <h2>TEDxYouth Event Planning</h2>
+      <p class="section-intro">
+        This page records my TEDxYouth planning process, including theme development,
+        team collaboration, and event preparation.
+      </p>
+    </div>
+
+    <a href="#clubs" class="back-link">← Back to Clubs</a>
+
+    <div class="photo-list">
+      <!-- TEDx Photo 1 -->
+      <div class="photo-item">
+        <img src="image/tedx-1.jpg" alt="TEDxYouth photo 1">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Write a caption about this moment. You can describe the event planning process,
+            team meeting, theme discussion, or preparation work.
+          </p>
+        </div>
+      </div>
+
+      <!-- TEDx Photo 2 -->
+      <div class="photo-item">
+        <img src="image/tedx-2.jpg" alt="TEDxYouth photo 2">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a caption here. This can explain your leadership role, collaboration experience,
+            or what you learned from organizing an event.
+          </p>
+        </div>
+      </div>
+
+      <!-- TEDx Photo 3 -->
+      <div class="photo-item">
+        <img src="image/tedx-3.jpg" alt="TEDxYouth photo 3">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a short reflection about storytelling, student voices, or creating a platform for ideas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       POLICY FORUM PHOTO PAGE
+       This page appears when users click the Policy Forum card.
+  ================================= -->
+  <section id="policy-forum-page" class="section photo-page">
+    <div class="section-title">
+      <p>Photo Gallery</p>
+      <h2>Policy Forum</h2>
+      <p class="section-intro">
+        This page records my policy forum experience, including public issue discussions,
+        proposal development, and youth participation.
+      </p>
+    </div>
+
+    <a href="#community" class="back-link">← Back to Community</a>
+
+    <div class="photo-list">
+      <!-- Policy Forum Photo 1 -->
+      <div class="photo-item">
+        <img src="image/policy-forum-1.jpg" alt="Policy forum photo 1">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Write a caption about this policy forum moment. You can explain the issue being discussed,
+            your role, or the proposal your team worked on.
+          </p>
+        </div>
+      </div>
+
+      <!-- Policy Forum Photo 2 -->
+      <div class="photo-item">
+        <img src="image/policy-forum-2.jpg" alt="Policy forum photo 2">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a caption here. This space can describe teamwork, research, public communication,
+            or youth involvement in social issues.
+          </p>
+        </div>
+      </div>
+
+      <!-- Policy Forum Photo 3 -->
+      <div class="photo-item">
+        <img src="image/policy-forum-3.jpg" alt="Policy forum photo 3">
+        <div class="photo-caption">
+          <h3>Photo Title</h3>
+          <p>
+            Add a short reflection about what this activity taught you about policy,
+            civic participation, or real-world problem solving.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       REFLECTION
+       This section summarizes the meaning of the portfolio.
+  ================================= -->
+  <section id="reflection" class="section section-light">
+    <div class="section-title">
+      <p>Reflection</p>
+      <h2>What This Journey Means to Me</h2>
+    </div>
+
+    <div class="reflection-box">
+      <h3>From Achievement to Inquiry</h3>
+      <p>
+        During high school, I gradually learned that academic growth is not only about completing tasks
+        or collecting achievements. Research, debate, competitions, and self-study taught me that
+        meaningful learning begins with asking better questions.
+      </p>
+
+      <p>
+        My interests may seem broad at first: economics, finance, mathematics, language, writing,
+        and public speaking. However, they are connected by one central goal: I want to use analysis
+        and communication to understand the world more deeply.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================
+       FOOTER
+       This is the bottom of the website.
+  ================================= -->
+  <footer class="footer">
+    <p>© 2026 Ann's Learning Portfolio. Built with curiosity, discipline, and reflection.</p>
+  </footer>
+
+  <script>
+    /* ================================
+       JAVASCRIPT INTERACTION
+       This section controls:
+       1. Mobile menu opening and closing
+       2. Fade-in animation when scrolling
+       3. Navbar shadow after scrolling
+    ================================= */
+
+    /* Mobile Menu Toggle */
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* Close mobile menu after clicking a navigation link */
+    const links = document.querySelectorAll(".nav-links a");
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    /* Fade-in animation when elements enter the screen */
+    const fadeElements = document.querySelectorAll(
+      ".fade-in, .category-card, .content-card, .timeline-item, .reflection-box, .photo-item"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    fadeElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+    /* Navbar shadow after scrolling */
+    const header = document.querySelector(".site-header");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        header.style.boxShadow = "0 4px 20px rgba(15, 23, 42, 0.08)";
+      } else {
+       header.style.boxShadow = "none";
+      }
+    });
+  </script>
+</body>
+</html>
