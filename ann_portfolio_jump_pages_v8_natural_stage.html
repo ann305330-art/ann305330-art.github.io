@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ann's Learning Portfolio</title>
+<style>
+    /* ================================
+       STYLE SETTINGS / 格式設定
+       This CSS section controls the overall visual design:
+       colors, layout, spacing, cards, buttons, photo pages,
+       animations, and responsive design.
+    ================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Noto Sans TC", Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2933;
+      background-color: #f8f7f3;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(248, 247, 243, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd8cc;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #172554;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #374151;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1d4ed8;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #172554;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 24px;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.68), rgba(15, 23, 42, 0.68)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 820px;
+    }
+
+    .tagline {
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5.2rem);
+      margin-bottom: 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.1;
+    }
+
+    .hero-text {
+      font-size: 1.15rem;
+      margin-bottom: 38px;
+      color: #e5e7eb;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-button {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #f8f7f3;
+      color: #172554;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-button.secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+    }
+
+    .hero-button:hover {
+      transform: translateY(-3px);
+      background: #dbeafe;
+      color: #172554;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 90px 24px;
+    }
+
+    .section-light {
+      max-width: none;
+      background-color: #eef2f7;
+    }
+
+    .section-light > .section-title,
+    .section-light > .category-grid,
+    .section-light > .content-grid,
+    .section-light > .timeline,
+    .section-light > .reflection-box,
+    .section-light > .photo-list,
+    .section-light > .back-link {
+      max-width: 1150px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      margin-bottom: 46px;
+      text-align: center;
+    }
+
+    .section-title p {
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #111827;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin: 14px auto 0;
+      color: #4b5563;
+      font-size: 1rem;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      max-width: 980px;
+    }
+
+    .category-card {
+      grid-column: span 2;
+    }
+
+    .category-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .category-card:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    .category-card {
+      background: white;
+      padding: 26px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #1f2933;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-top: 4px solid #172554;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.13);
+    }
+
+    .category-card h3 {
+      color: #172554;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .category-card p {
+      color: #4b5563;
+      font-size: 0.92rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .content-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    .content-card h3 {
+      color: #172554;
+      margin-bottom: 14px;
+      font-size: 1.18rem;
+    }
+
+    .content-card p {
+      color: #374151;
+      margin-bottom: 16px;
+    }
+
+    .content-card span {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: #2563eb;
+      font-weight: 600;
+      background: #eff6ff;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .card-button {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .card-button .open-label {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #172554;
+      font-weight: 700;
+    }
+
+    .wide-card {
+      grid-column: span 2;
+    }
+
+    /* ================================
+       PAGE-LIKE NAVIGATION / 跳轉式頁面
+       Only the home/category map is visible first.
+       Other sections appear only after clicking a navigation button/link.
+    ================================= */
+
+    .content-page {
+      display: none !important;
+    }
+
+    body.page-open .main-page {
+      display: none !important;
+    }
+
+    body.page-open .content-page.active-page {
+      display: block !important;
+      animation: page-reveal 0.48s ease both;
+    }
+
+    .page-nav-button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .read-more-button {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #172554;
+      color: white;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .read-more-button:hover {
+      transform: translateY(-2px);
+      background: #1d4ed8;
+    }
+
+    .page-back-button {
+      display: block;
+      width: fit-content;
+      margin: -16px auto 34px;
+      background: transparent;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .page-back-button:hover {
+      color: #172554;
+    }
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 210px;
+    }
+
+    .content-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @keyframes page-reveal {
+      0% { opacity: 0; transform: translateY(18px) scale(0.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+
+
+    /* ================================
+       COMIC WHOOSH TRANSITION / 漫畫風「咻」轉場
+       This appears briefly when users click internal page links.
+    ================================= */
+
+    .whoosh-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      visibility: hidden;
+      overflow: hidden;
+    }
+
+    .whoosh-transition::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 50%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.08) 36%, transparent 62%),
+        linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.76) 48%, transparent 78%);
+      transform: translateX(-120%) skewX(-16deg);
+    }
+
+    .whoosh-transition.active {
+      visibility: visible;
+    }
+
+    .whoosh-transition.active::before {
+      animation: whoosh-panel 0.68s ease-in-out forwards;
+    }
+
+    .whoosh-line {
+      position: absolute;
+      left: -35%;
+      height: 5px;
+      width: 46%;
+      border-radius: 999px;
+      background: rgba(23, 37, 84, 0.42);
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.18);
+      transform: skewX(-18deg);
+      opacity: 0;
+    }
+
+    .line-1 { top: 18%; width: 54%; }
+    .line-2 { top: 33%; width: 38%; background: rgba(37, 99, 235, 0.35); }
+    .line-3 { top: 50%; width: 62%; height: 7px; }
+    .line-4 { top: 66%; width: 44%; background: rgba(99, 102, 241, 0.3); }
+    .line-5 { top: 81%; width: 52%; }
+
+    .whoosh-transition.active .whoosh-line {
+      animation: whoosh-lines 0.62s ease-out forwards;
+    }
+
+    .whoosh-transition.active .line-2 { animation-delay: 0.04s; }
+    .whoosh-transition.active .line-3 { animation-delay: 0.08s; }
+    .whoosh-transition.active .line-4 { animation-delay: 0.12s; }
+    .whoosh-transition.active .line-5 { animation-delay: 0.16s; }
+
+    .whoosh-word {
+      display: none;
+    }
+
+    @keyframes whoosh-panel {
+      0% { transform: translateX(-120%) skewX(-16deg); }
+      42% { transform: translateX(0%) skewX(-16deg); }
+      100% { transform: translateX(120%) skewX(-16deg); }
+    }
+
+    @keyframes whoosh-lines {
+      0% { transform: translateX(0) skewX(-18deg); opacity: 0; }
+      18% { opacity: 1; }
+      100% { transform: translateX(330%) skewX(-18deg); opacity: 0; }
+    }
+
+    @keyframes whoosh-word {
+      0% { transform: translateX(0) rotate(-13deg) scale(0.9); opacity: 0; }
+      18% { opacity: 1; }
+      100% { transform: translateX(115vw) rotate(-7deg) scale(1.08); opacity: 0; }
+    }
+
+
+
+    /* ================================
+       THEATER CURTAIN TRANSITION / Reflection 開場紅色戲劇簾
+       This special transition is used for the Reflection page.
+    ================================= */
+
+    .curtain-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      pointer-events: none;
+      visibility: hidden;
+      overflow: hidden;
+      background: radial-gradient(circle at center, rgba(255, 244, 214, 0.14) 0%, rgba(0, 0, 0, 0.1) 46%, rgba(0, 0, 0, 0.24) 100%);
+    }
+
+    .curtain-transition.active {
+      visibility: visible;
+    }
+
+    .curtain-stage-light {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at 50% 42%, rgba(255, 247, 213, 0.24) 0%, rgba(255, 247, 213, 0.12) 16%, rgba(255, 247, 213, 0.02) 38%, transparent 55%);
+    }
+
+    .curtain-top-valance {
+      position: absolute;
+      top: -1.5%;
+      left: -2%;
+      width: 104%;
+      height: 17vh;
+      min-height: 110px;
+      border-bottom-left-radius: 48px;
+      border-bottom-right-radius: 48px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 30%),
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.18) 0px,
+          rgba(255, 255, 255, 0.18) 18px,
+          rgba(110, 0, 0, 0.15) 18px,
+          rgba(110, 0, 0, 0.15) 40px,
+          rgba(255, 255, 255, 0.05) 40px,
+          rgba(255, 255, 255, 0.05) 58px),
+        linear-gradient(180deg, #d91b1b 0%, #b70a0a 42%, #7f0000 100%);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
+      transform-origin: top center;
+    }
+
+    .curtain-panel {
+      position: absolute;
+      top: 0;
+      width: 54%;
+      height: 100%;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 22%),
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.14) 0px,
+          rgba(255, 255, 255, 0.14) 12px,
+          rgba(108, 0, 0, 0.18) 12px,
+          rgba(108, 0, 0, 0.18) 28px,
+          rgba(255, 255, 255, 0.06) 28px,
+          rgba(255, 255, 255, 0.06) 42px,
+          rgba(90, 0, 0, 0.16) 42px,
+          rgba(90, 0, 0, 0.16) 58px),
+        linear-gradient(180deg, #d91b1b 0%, #b10606 35%, #820000 100%);
+      box-shadow: inset -14px 0 18px rgba(0, 0, 0, 0.2), 0 0 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .curtain-panel::before {
+      content: "";
+      position: absolute;
+      top: 55%;
+      width: 76px;
+      height: 20px;
+      border: 3px solid #d9a441;
+      border-radius: 999px;
+      background: rgba(111, 0, 0, 0.2);
+      box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.12);
+    }
+
+    .curtain-left {
+      left: -4%;
+      border-top-right-radius: 22px;
+      border-bottom-right-radius: 48px;
+    }
+
+    .curtain-left::before {
+      right: -32px;
+    }
+
+    .curtain-right {
+      right: -4%;
+      border-top-left-radius: 22px;
+      border-bottom-left-radius: 48px;
+      box-shadow: inset 14px 0 18px rgba(0, 0, 0, 0.2), 0 0 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .curtain-right::before {
+      left: -32px;
+    }
+
+    .curtain-transition.active .curtain-stage-light {
+      animation: curtain-stage-glow 1.18s ease forwards;
+    }
+
+    .curtain-transition.active .curtain-top-valance {
+      animation: curtain-top-bounce 1.18s ease forwards;
+    }
+
+    .curtain-transition.active .curtain-left {
+      animation: curtain-open-left 1.18s cubic-bezier(0.24, 0.92, 0.28, 1) forwards;
+    }
+
+    .curtain-transition.active .curtain-right {
+      animation: curtain-open-right 1.18s cubic-bezier(0.24, 0.92, 0.28, 1) forwards;
+    }
+
+    @keyframes curtain-stage-glow {
+      0% { opacity: 0; }
+      25% { opacity: 1; }
+      100% { opacity: 0.55; }
+    }
+
+    @keyframes curtain-top-bounce {
+      0% { transform: translateY(-14px) scaleY(1.03); }
+      45% { transform: translateY(0) scaleY(1); }
+      62% { transform: translateY(-2px) scaleY(1.01); }
+      100% { transform: translateY(0) scaleY(1); }
+    }
+
+    @keyframes curtain-open-left {
+      0% { transform: translateX(0); }
+      72% { transform: translateX(-89%); }
+      100% { transform: translateX(-84%) skewY(-1.2deg); }
+    }
+
+    @keyframes curtain-open-right {
+      0% { transform: translateX(0); }
+      72% { transform: translateX(89%); }
+      100% { transform: translateX(84%) skewY(1.2deg); }
+    }
+
+    .curtain-transition.closing {
+      visibility: visible;
+    }
+
+    .curtain-transition.closing .curtain-stage-light {
+      animation: curtain-stage-dim 1.05s ease forwards;
+    }
+
+    .curtain-transition.closing .curtain-top-valance {
+      animation: curtain-top-bounce 1.05s ease forwards;
+    }
+
+    .curtain-transition.closing .curtain-left {
+      animation: curtain-close-left 1.05s cubic-bezier(0.24, 0.92, 0.28, 1) forwards;
+    }
+
+    .curtain-transition.closing .curtain-right {
+      animation: curtain-close-right 1.05s cubic-bezier(0.24, 0.92, 0.28, 1) forwards;
+    }
+
+    @keyframes curtain-stage-dim {
+      0% { opacity: 0.55; }
+      35% { opacity: 0.95; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes curtain-close-left {
+      0% { transform: translateX(-84%) skewY(-1.2deg); }
+      72% { transform: translateX(3%); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes curtain-close-right {
+      0% { transform: translateX(84%) skewY(1.2deg); }
+      72% { transform: translateX(-3%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ================================
+       LEARNING JOURNEY BOOK / 學習歷程翻頁書
+       The original timeline becomes an interactive three-page book.
+    ================================= */
+
+    .book-stage {
+      display: grid;
+      grid-template-columns: 0.85fr 1.35fr;
+      gap: 34px;
+      align-items: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .book-guide {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border-left: 5px solid #172554;
+    }
+
+    .book-guide h3 {
+      color: #172554;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      margin-bottom: 12px;
+    }
+
+    .book-guide p {
+      color: #4b5563;
+      margin-bottom: 18px;
+    }
+
+    .book-dots {
+      display: flex;
+      gap: 9px;
+      margin-bottom: 18px;
+    }
+
+    .book-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: none;
+      background: #cbd5e1;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .book-dot.active {
+      background: #172554;
+      transform: scale(1.2);
+    }
+
+    .book-controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .book-control {
+      border: none;
+      background: #172554;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .book-control:hover {
+      transform: translateY(-2px);
+      background: #1d4ed8;
+    }
+
+    .book-control.secondary {
+      background: #e5e7eb;
+      color: #172554;
+    }
+
+    .book-control.secondary:hover {
+      background: #dbeafe;
+    }
+
+    .journey-book {
+      position: relative;
+      min-height: 430px;
+      perspective: 1400px;
+      cursor: pointer;
+      filter: drop-shadow(0 20px 28px rgba(15, 23, 42, 0.18));
+    }
+
+    .journey-book::before {
+      content: "";
+      position: absolute;
+      inset: 18px 8px 16px 8px;
+      border-radius: 20px 28px 28px 20px;
+      background: linear-gradient(135deg, #172554, #1d4ed8);
+      transform: rotate(-2deg);
+      z-index: 0;
+    }
+
+    .journey-book::after {
+      content: "";
+      position: absolute;
+      top: 24px;
+      bottom: 22px;
+      left: 42px;
+      width: 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0.08));
+      z-index: 3;
+      opacity: 0.75;
+    }
+
+    .book-page {
+      position: absolute;
+      inset: 0 0 0 34px;
+      min-height: 410px;
+      padding: 44px 44px 38px;
+      border-radius: 18px 28px 28px 18px;
+      background:
+        linear-gradient(90deg, rgba(23, 37, 84, 0.12), transparent 9%),
+        repeating-linear-gradient(0deg, transparent 0 34px, rgba(37, 99, 235, 0.07) 35px 36px),
+        #fffaf0;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      transform-origin: left center;
+      transform: rotateY(-96deg);
+      opacity: 0;
+      pointer-events: none;
+      backface-visibility: hidden;
+      z-index: 1;
+    }
+
+    .book-page.active {
+      transform: rotateY(0deg);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .book-page.turn-out {
+      opacity: 1;
+      animation: page-turn-out 0.68s ease-in-out forwards;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .book-page.turn-in {
+      opacity: 1;
+      animation: page-turn-in 0.68s ease-in-out forwards;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .book-page.turn-out-reverse {
+      opacity: 1;
+      animation: page-turn-out-reverse 0.68s ease-in-out forwards;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .book-page.turn-in-reverse {
+      opacity: 1;
+      animation: page-turn-in-reverse 0.68s ease-in-out forwards;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .book-page::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 74px;
+      height: 74px;
+      border-radius: 22px 0 28px 0;
+      background: linear-gradient(135deg, rgba(203, 213, 225, 0.1), rgba(203, 213, 225, 0.62));
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    }
+
+    .page-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .book-page h3 {
+      color: #172554;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.7rem, 3vw, 2.25rem);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .book-page p {
+      color: #374151;
+      font-size: 1rem;
+      line-height: 1.85;
+      max-width: 92%;
+    }
+
+    .book-page.compact-page h3 {
+      font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+      margin-bottom: 12px;
+    }
+
+    .book-page.compact-page p {
+      font-size: 0.92rem;
+      line-height: 1.62;
+      max-width: 96%;
+    }
+
+    .page-number {
+      position: absolute;
+      right: 38px;
+      bottom: 28px;
+      color: #64748b;
+      font-size: 0.9rem;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    @keyframes page-turn-out {
+      0% { transform: rotateY(0deg); opacity: 1; }
+      58% { opacity: 0.92; }
+      100% { transform: rotateY(-104deg); opacity: 0; }
+    }
+
+    @keyframes page-turn-in {
+      0% { transform: rotateY(92deg); opacity: 0.35; }
+      100% { transform: rotateY(0deg); opacity: 1; }
+    }
+
+    @keyframes page-turn-out-reverse {
+      0% { transform: rotateY(0deg); opacity: 1; }
+      100% { transform: rotateY(96deg); opacity: 0; }
+    }
+
+    @keyframes page-turn-in-reverse {
+      0% { transform: rotateY(-104deg); opacity: 0.35; }
+      100% { transform: rotateY(0deg); opacity: 1; }
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      color: #1d4ed8;
+      background: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.07);
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      border-left: 5px solid #2563eb;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    .timeline-content h3 {
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .photo-page {
+      scroll-margin-top: 80px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-link:hover {
+      color: #172554;
+    }
+
+    .photo-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .photo-item {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      background-color: #dbeafe;
+    }
+
+    .photo-caption {
+      padding: 22px;
+    }
+
+    .photo-caption h3 {
+      color: #172554;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .photo-caption p {
+      color: #374151;
+      font-size: 0.95rem;
+    }
+
+    #reflection {
+      position: relative;
+      max-width: none;
+      min-height: calc(100vh - 78px);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 13%, rgba(255, 237, 176, 0.58) 0%, rgba(255, 212, 122, 0.28) 22%, transparent 44%),
+        radial-gradient(circle at 16% 22%, rgba(147, 197, 253, 0.42) 0%, rgba(96, 165, 250, 0.16) 30%, transparent 52%),
+        radial-gradient(circle at 84% 20%, rgba(216, 180, 254, 0.40) 0%, rgba(192, 132, 252, 0.15) 30%, transparent 52%),
+        radial-gradient(circle at 50% 62%, rgba(255, 247, 199, 0.28) 0%, transparent 38%),
+        linear-gradient(180deg, #7f1d3a 0%, #a21d4b 34%, #d97745 72%, #f3c27b 100%);
+      color: #fff7ed;
+    }
+
+    #reflection::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 35%;
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(255, 255, 255, 0.11) 0px,
+          rgba(255, 255, 255, 0.11) 2px,
+          transparent 2px,
+          transparent 82px),
+        repeating-linear-gradient(0deg,
+          transparent 0px,
+          transparent 34px,
+          rgba(120, 53, 15, 0.16) 35px,
+          rgba(120, 53, 15, 0.16) 37px),
+        linear-gradient(180deg, rgba(253, 224, 151, 0.52), #c56a2d 68%, #8a3a18 100%);
+      clip-path: polygon(8% 28%, 92% 28%, 100% 100%, 0% 100%);
+      opacity: 0.92;
+    }
+
+    #reflection::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 13% 14%, rgba(255, 244, 189, 0.72) 0 5px, transparent 6px),
+        radial-gradient(circle at 23% 10%, rgba(255, 244, 189, 0.62) 0 4px, transparent 5px),
+        radial-gradient(circle at 77% 10%, rgba(255, 244, 189, 0.62) 0 4px, transparent 5px),
+        radial-gradient(circle at 87% 14%, rgba(255, 244, 189, 0.72) 0 5px, transparent 6px),
+        linear-gradient(104deg, transparent 0%, rgba(219, 234, 254, 0.26) 36%, rgba(255, 255, 235, 0.20) 47%, transparent 62%),
+        linear-gradient(256deg, transparent 0%, rgba(243, 232, 255, 0.26) 36%, rgba(255, 255, 235, 0.18) 47%, transparent 62%);
+      mix-blend-mode: screen;
+      opacity: 0.95;
+    }
+
+    .stage-ornament {
+      position: absolute;
+      top: 92px;
+      left: 50%;
+      width: min(760px, 78vw);
+      height: 16px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background:
+        radial-gradient(circle, rgba(255, 243, 196, 0.95) 0 5px, transparent 6px) 0 50% / 56px 16px repeat-x,
+        linear-gradient(90deg, transparent, rgba(255, 243, 196, 0.38), transparent);
+      filter: drop-shadow(0 0 10px rgba(255, 226, 135, 0.35));
+      opacity: 0.72;
+      z-index: 1;
+    }
+
+    #reflection .section-title,
+    #reflection .page-back-button,
+    #reflection .reflection-box {
+      position: relative;
+      z-index: 2;
+    }
+
+    #reflection .section-title p {
+      color: #fffbeb;
+      font-weight: 800;
+      text-shadow:
+        0 2px 8px rgba(69, 10, 10, 0.72),
+        0 0 18px rgba(127, 29, 29, 0.45);
+    }
+
+    #reflection .section-title h2 {
+      color: #fffaf0;
+      text-shadow:
+        0 3px 10px rgba(69, 10, 10, 0.82),
+        0 8px 28px rgba(69, 10, 10, 0.55);
+    }
+
+    #reflection .page-back-button {
+      margin-left: calc((100% - 850px) / 2);
+      color: #fff7ed;
+      border-color: rgba(255, 247, 237, 0.72);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    #reflection .page-back-button:hover {
+      background: rgba(255, 247, 237, 0.9);
+      color: #7f1d1d;
+    }
+
+    .reflection-box {
+      background: rgba(255, 253, 245, 0.96);
+      padding: 40px;
+      border-radius: 22px;
+      border-left: 5px solid #facc15;
+      box-shadow:
+        0 24px 70px rgba(127, 29, 29, 0.24),
+        0 0 34px rgba(255, 244, 189, 0.32),
+        0 0 0 1px rgba(250, 204, 21, 0.28);
+      max-width: 850px;
+      backdrop-filter: blur(8px);
+    }
+
+    #reflection .reflection-box {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .reflection-box h3 {
+      margin-bottom: 14px;
+      color: #7f1d1d;
+      font-size: 1.35rem;
+    }
+
+    .reflection-box p {
+      color: #374151;
+      margin-bottom: 14px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: #111827;
+      color: #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    .fade-in,
+    .category-card,
+    .content-card,
+    .timeline-item,
+    .reflection-box,
+    .photo-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    @media (prefers-reduced-motion: reduce) {
+      .whoosh-transition,
+      .whoosh-transition::before,
+      .whoosh-line,
+      .whoosh-word,
+      .curtain-transition,
+      .curtain-stage-light,
+      .curtain-top-valance,
+      .curtain-panel,
+      .book-page,
+      .book-control,
+      .book-dot {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 760px;
+      }
+
+      .category-card,
+      .category-card:nth-child(4),
+      .category-card:nth-child(5) {
+        grid-column: auto;
+      }
+
+      .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .book-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .journey-book {
+        min-height: 470px;
+      }
+
+      .wide-card {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        right: 24px;
+        background: white;
+        flex-direction: column;
+        width: 245px;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .category-grid,
+      .content-grid,
+      .photo-list {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-year {
+        width: fit-content;
+      }
+
+      .journey-book {
+        min-height: 560px;
+      }
+
+      .book-page {
+        inset: 0 0 0 18px;
+        padding: 34px 26px 34px;
+      }
+
+      .book-page p {
+        max-width: 100%;
+        font-size: 0.95rem;
+      }
+
+      .book-page.compact-page p {
+        font-size: 0.86rem;
+        line-height: 1.52;
+      }
+
+      .hero {
+        min-height: 82vh;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Comic-style page transition effect / 漫畫風咻咻轉場 -->
+<div aria-hidden="true" class="whoosh-transition" id="whooshTransition">
+<span class="whoosh-line line-1"></span>
+<span class="whoosh-line line-2"></span>
+<span class="whoosh-line line-3"></span>
+<span class="whoosh-line line-4"></span>
+<span class="whoosh-line line-5"></span>
+</div>
+<div aria-hidden="true" class="curtain-transition" id="curtainTransition">
+<div class="curtain-stage-light"></div>
+<div class="curtain-top-valance"></div>
+<div class="curtain-panel curtain-left"></div>
+<div class="curtain-panel curtain-right"></div>
+</div>
+<header class="site-header">
+<nav class="navbar">
+<div class="logo">Ann's Portfolio</div>
+<button class="menu-toggle" id="menuToggle">☰</button>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#categories">Categories</a></li>
+<li><a href="#learning">Journey</a></li>
+<li><a href="#clubs">Clubs</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#awards">Awards</a></li>
+<li><a href="#self-study">Self-study</a></li>
+</ul>
+</nav>
+</header>
+<section class="hero main-page" id="home">
+<div class="hero-content fade-in">
+<p class="tagline">High School Learning Portfolio</p>
+<h1>Building Direction Through Exploration</h1>
+<p class="hero-text">
+        This website presents my high school learning journey through academics,
+        competitions, research, leadership, community engagement, and self-directed learning.
+        It records not only what I have done, but also how I learned to question, connect, and grow.
+      </p>
+<div class="hero-buttons">
+<a class="hero-button" href="#categories">Explore My Portfolio</a>
+<a class="hero-button secondary" href="#reflection">Read My Reflection</a>
+</div>
+</div>
+</section>
+<section class="section section-light main-page" id="categories">
+<div class="section-title">
+<p>Portfolio Map</p>
+<h2>Explore by Category</h2>
+<p class="section-intro">
+        Each category represents a different part of my high school experience:
+        academic growth, student organizations, service, achievements, and independent learning.
+      </p>
+</div>
+<div class="category-grid">
+<article class="category-card">
+<h3>My Learning Journey</h3>
+<p>Academic growth, research interests, and intellectual development.</p>
+<button class="page-nav-button read-more-button" data-page-target="#learning" type="button">Read More →</button></article>
+<article class="category-card">
+<h3>Clubs</h3>
+<p>Debate, TEDxYouth, Go, teamwork, and student-led initiatives.</p>
+<button class="page-nav-button read-more-button" data-page-target="#clubs" type="button">Read More →</button></article>
+<article class="category-card">
+<h3>Community</h3>
+<p>Tutoring, content creation, policy forum, and projects that connect with others.</p>
+<button class="page-nav-button read-more-button" data-page-target="#community" type="button">Read More →</button></article>
+<article class="category-card">
+<h3>Academic Awards</h3>
+<p>Competitions, language achievements, and academic recognition.</p>
+<button class="page-nav-button read-more-button" data-page-target="#awards" type="button">Read More →</button></article>
+<article class="category-card">
+<h3>Self-study</h3>
+<p>Independent preparation, online learning, and personal projects.</p>
+<button class="page-nav-button read-more-button" data-page-target="#self-study" type="button">Read More →</button></article>
+</div>
+</section>
+<section class="section content-page" id="learning">
+<div class="section-title">
+<p>Category One</p>
+<h2>My Learning Journey</h2>
+<p class="section-intro">
+        My learning journey began with broad curiosity and gradually became more focused on
+        economics, finance, mathematics, research, and the use of data to understand real-world problems.
+      </p>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="book-stage">
+<div class="book-guide fade-in">
+<h3>Turn the Pages</h3>
+<p>
+          Click the book to move through the three stages of my learning journey:
+          Grade 9, Grade 10, and Grade 11.
+        </p>
+<div aria-label="Learning journey pages" class="book-dots" id="bookDots">
+<button aria-label="Go to Grade 9" class="book-dot active" data-page="0"></button>
+<button aria-label="Go to Grade 10" class="book-dot" data-page="1"></button>
+<button aria-label="Go to Grade 11" class="book-dot" data-page="2"></button>
+</div>
+<div class="book-controls">
+<button class="book-control secondary" id="prevPage" type="button">← Previous</button>
+<button class="book-control" id="nextPage" type="button">Next Page →</button>
+</div>
+</div>
+<div aria-label="Click to turn the learning journey book page" class="journey-book fade-in" id="journeyBook" role="button" tabindex="0">
+<article class="book-page active" data-page="0">
+<span class="page-label">Grade 9</span>
+<h3>Building Academic Foundations</h3>
+<p>
+            After skipping 8th grade, I joined a new class of previous seniors.
+            I focused mostly on studying for the entrance exam and worked on my math and language skills outside of school.
+            After graduating from a local junior high school with 35.8/36 on the entrance exam, instead of going to Taipei First Girls' High School,
+            I selected an unconventional path: transferring to international education.
+          </p>
+<span class="page-number">01 / 03</span>
+</article>
+<article class="book-page" data-page="1">
+<span class="page-label">Grade 10</span>
+<h3>Deepening Exploration</h3>
+<p>
+            I adapted to the new bilingual environment and coursework, and my curiosity thrived.
+            Although falling behind on English speaking at first, I caught up thanks to debate and business presentation experiences.
+            In addition, I started self-studying economics through Khan Academy, and later joined related competitions.
+            This opened my econ/business academic path.
+          </p>
+<span class="page-number">02 / 03</span>
+</article>
+<article class="book-page compact-page" data-page="2">
+<span class="page-label">Grade 11</span>
+<h3>Connecting Knowledge to Direction</h3>
+<p>
+            I expanded on clubs, volunteering, and started new passion projects.
+            I challenged myself through AP courses, standardized tests, economics competitions,
+            and independent research. I became increasingly interested in using economic reasoning
+            and empirical methods to analyze social issues. Also, I began connecting my academic interests
+            with future goals in economics, finance, and research. My learning became less about collecting certificates
+            and more about developing a clearer intellectual direction.
+          </p>
+<span class="page-number">03 / 03</span>
+</article>
+</div>
+</div>
+</section>
+<section class="section section-light content-page" id="clubs">
+<div class="section-title">
+<p>Category Two</p>
+<h2>Clubs</h2>
+<p class="section-intro">
+        Clubs gave me the chance to practice leadership, communication, teamwork, and public expression
+        beyond the classroom.
+      </p>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="content-grid">
+<article class="content-card">
+<h3>Debate</h3>
+<p>
+          Debate trained me to build arguments, analyze evidence, respond to opposing views,
+          and communicate complex ideas under pressure. It also strengthened my confidence in public speaking.
+        </p>
+<span>Argumentation · Public Speaking</span>
+
+<button class="page-nav-button read-more-button photo-button" data-page-target="#debate-page" type="button">View Photos →</button></article>
+<article class="content-card">
+<h3>TEDxYouth Event Planning</h3>
+<p>
+          Through TEDxYouth, I participated in theme development, event planning, and team coordination.
+          The process helped me think about how stories, ideas, and student voices can inspire a wider audience.
+        </p>
+<span>Leadership · Event Planning</span>
+
+<button class="page-nav-button read-more-button photo-button" data-page-target="#tedx-page" type="button">View Photos →</button></article>
+<article class="content-card">
+<h3>Go (Weiqi)</h3>
+<p>
+          Playing Go trained my strategic layout thinking, concentration, and logic. It taught me how to handle complex global tactical variations and maintain calm analytical focus.
+        </p>
+<span>Strategy · Logic · Calmness</span>
+
+<button class="page-nav-button read-more-button photo-button" data-page-target="#go-page" type="button">View Photos →</button></article>
+</div>
+</section>
+<section class="section content-page" id="community">
+<div class="section-title">
+<p>Category Three</p>
+<h2>Community</h2>
+<p class="section-intro">
+        My community-related activities focus on education, communication, public issues,
+        and making knowledge more accessible to others.
+      </p>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="content-grid">
+<div class="content-card">
+<h3>English Tutoring</h3>
+<p>
+          I taught English to younger students and learned how to explain concepts clearly,
+          adjust to different learning levels, and make lessons more engaging.
+        </p>
+<span>Teaching · Communication</span>
+</div>
+<article class="content-card">
+<h3>Policy Forum</h3>
+<p>
+          Through the policy forum, I explored public issues, youth participation,
+          and how students can transform ideas into proposals with social relevance.
+        </p>
+<span>Public Issues · Youth Participation</span>
+
+<button class="page-nav-button read-more-button photo-button" data-page-target="#policy-forum-page" type="button">View Photos →</button></article>
+<div class="content-card">
+<h3>Japanese Translation Content</h3>
+<p>
+          I created bilingual subtitle content to make Japanese media and language learning more accessible.
+          This project allowed me to combine language learning, translation, and digital communication.
+        </p>
+<span>Language · Digital Content</span>
+</div>
+</div> </section> <section class="section section-light content-page" id="awards">
+<div class="section-title">
+<p>Category Four</p>
+<h2>Academic Awards</h2>
+<p class="section-intro">
+        These achievements reflect the areas where I challenged myself academically:
+        economics, debate, language learning, and standardized academic preparation.
+      </p>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="content-grid">
+<article class="content-card">
+<h3>Taiwanese Economics Olympiad</h3>
+<p>
+          I received a Gold Award in the 2026 Taiwanese Economics Olympiad.
+          This experience strengthened my interest in economics, finance, and applying theory
+          to real-world problems.
+        </p>
+<span>Economics · Finance · Gold Award</span>
+
+<button class="page-nav-button read-more-button photo-button" data-page-target="#teo-page" type="button">View Photos →</button></article>
+<div class="content-card">
+<h3>National Debate Championships</h3>
+<p>
+          Debate competitions helped me develop logical reasoning, evidence-based argumentation,
+          and persuasive communication. They also shaped how I approach disagreement and collaboration.
+        </p>
+<span>Debate · Critical Thinking</span>
+</div>
+<div class="content-card">
+<h3>Language Achievements</h3>
+<p>
+          My language learning journey includes achievements such as TOEFL and JLPT preparation.
+          These experiences reflect my long-term interest in communication across cultures.
+        </p>
+<span>TOEFL · JLPT</span>
+</div>
+<div class="content-card wide-card">
+<h3>AP and Standardized Test Preparation</h3>
+<p>
+          Preparing for rigorous exams trained my discipline, time management, and ability to learn under pressure.
+          More importantly, it pushed me to connect classroom knowledge with broader academic interests.
+        </p>
+<span>AP · SAT · Academic Discipline</span>
+</div>
+</div>
+</section>
+<section class="section content-page" id="self-study">
+<div class="section-title">
+<p>Category Five</p>
+<h2>Self-study</h2>
+<p class="section-intro">
+        Self-study has been one of the most important parts of my high school experience.
+        It allowed me to go beyond school requirements and pursue questions that genuinely interested me.
+      </p>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="content-grid">
+<div class="content-card">
+<h3>Independent Research on Taiwan's Fertility Decline</h3>
+<p>
+          I explored Taiwan's fertility decline through a time-series econometric approach,
+          examining how economic and social factors may be associated with changes in birth patterns.
+        </p>
+<span>Research · Econometrics</span>
+</div>
+<div class="content-card">
+<h3>Company and Platform Strategy Analysis</h3>
+<p>
+          I analyzed companies such as Apple, Netflix, Spotify, and Google Play through business strategy frameworks,
+          comparing their positioning, ecosystems, and competitive advantages.
+        </p>
+<span>Business Strategy · Platforms</span>
+</div>
+<div class="content-card">
+<h3>Online Learning</h3>
+<p>
+          I used online courses and independent materials to explore finance, psychology, computer science,
+          and other subjects that supported my academic development.
+        </p>
+<span>Coursera · Independent Learning</span>
+</div>
+<div class="content-card wide-card">
+<h3>Language Self-study</h3>
+<p>
+          I studied Japanese and English independently through vocabulary systems, reading practice,
+          speaking preparation, translation, and real communication. Language learning became both
+          a personal interest and a way to connect with different cultures.
+        </p>
+<span>Japanese · English · Translation</span>
+</div>
+</div>
+</section>
+<section class="section section-light photo-page content-page" id="debate-page">
+<div class="section-title">
+<p>Photo Gallery</p>
+<h2>Debate</h2>
+<p class="section-intro">
+        This page records my debate experiences through photos, captions, and short reflections.
+      </p>
+</div>
+<button class="page-nav-button back-link page-back-button" data-page-target="#clubs" type="button">← Back to Clubs</button>
+<div class="photo-list">
+<div class="photo-item">
+<img alt="2024 Cicero Debate Honorable Mentioned" src="image/Cicero_HM.jpeg"/>
+<div class="photo-caption">
+<h3>2024 Cicero Debate Honorable Mention</h3>
+<p>
+            After three months of training in the Cicero Debate club, I was selected Honorable Mentioned debater at the tournament. 
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="Debate photo 2" src="image/Cicero_Winning.jpeg"/>
+<div class="photo-caption">
+<h3>2024 Cicero Debate First Place</h3>
+<p>
+            Our team was one of the National Winning Team out of 24 teams from 18 schools.
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="Debate photo 3" src="image/NTNU_Winning.jpeg"/>
+<div class="photo-caption">
+<h3>2025 NTNU POlicy Debate National Winning Team</h3>
+<p>
+            After winning the regional round, our team was one of the Winning teams at the National round out of 24 teams.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<section class="section photo-page content-page" id="teo-page">
+<div class="section-title">
+<p>Photo Gallery</p>
+<h2>Taiwanese Economics Olympiad</h2>
+<p class="section-intro">
+        This page records my learning, competition, and academic growth in the Taiwan Economics Olympiad.
+      </p>
+</div>
+<button class="page-nav-button back-link page-back-button" data-page-target="#awards" type="button">← Back to Academic Awards</button>
+<div class="photo-list">
+<div class="photo-item">
+<img alt="2025 TEO Award Certificate" src="image/TEO-silver.jpeg"/>
+<div class="photo-caption">
+<h3>2025 Silver Award Certificate</h3>
+<p>
+            After self-studying economics for four months, I ranked #9 in the 2025 Taiwanese Economics Olympiad.
+            This experience sparked my interest in economics, and I committed to it long-term.
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="2026 TEO Gold Award Certificate" src="image/TEO-gold.jpeg"/>
+<div class="photo-caption">
+<h3>2026 Gold Award Certificate</h3>
+<p>
+            I received a Gold Award in the 2026 Taiwanese Economics Olympiad, ranked #1 and qualified to the 2026 International Economics Olympiad.
+            This certificate represents one of my most meaningful academic experiences in economics.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-light photo-page content-page" id="tedx-page">
+<div class="section-title">
+<p>Photo Gallery</p>
+<h2>TEDxYouth Event Planning</h2>
+<p class="section-intro">
+        In 2025 and 2026, as our school's TEDx club president, I led a team of 40 students to host a licensed TEDx event at our school with 40+ listeners.
+      </p>
+</div>
+<button class="page-nav-button back-link page-back-button" data-page-target="#clubs" type="button">← Back to Clubs</button>
+<div class="photo-list">
+<div class="photo-item">
+<img alt="TEDxWego 2025" src="image/TED_2025.png"/>
+<div class="photo-caption">
+<h3>TEDxWego 2025</h3>
+<p>
+           The 2025 event "Tides of Time" discusses how to balance work and emotions as well as dream and life.
+           After all, as time goes on, we are given different responsibilities. 
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="TEDxWego 2025 Speakers" src="image/TED_Karren.JPG"/>
+<div class="photo-caption">
+<h3>TEDxWego 2025 Speakers</h3>
+<p>
+            One of the seven speakers, photographer Karren Kao, shared how she finds her passion in photography after graduating from medical school 
+           and how she guides herself through professional photography.
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="TEDxWego 2026 Recognized" src="image/TED_accepted.jpeg"/>
+<div class="photo-caption">
+<h3>Official License</h3>
+<p>
+            As the 2025-2026 club president, I led a group of 40 students to host the 2026 TEDxWego event. 
+            We have received our official license from TED.
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="TEDxWego 2026 Planning" src="image/TED_poster.png"/>
+<div class="photo-caption">
+<h3>TEDxWego 2026 Planning</h3>
+<p>
+           The 2026 event "Starward" discusses how to embrace changes in all stages of our lives 
+           and not to fear unconventional paths in pursuit of our goals.
+          </p>
+</div>
+</div>
+</div> </section> <section class="section photo-page content-page" id="policy-forum-page">
+<div class="section-title">
+<p>Photo Gallery</p>
+<h2>Policy Forum</h2>
+<p class="section-intro">
+        This page records my policy forum experience, including public issue discussions,
+        proposal development, and youth participation.
+      </p>
+</div>
+<button class="page-nav-button back-link page-back-button" data-page-target="#community" type="button">← Back to Community</button>
+<div class="photo-list">
+<div class="photo-item">
+<img alt="2024 Presidential and Youth Forum: TEEN TAIWAN Youth White Paper" src="image/Policy_certificate.jpeg"/>
+<div class="photo-caption">
+<h3>Public engagement</h3>
+<p>
+            Write a caption about this policy forum moment. You can explain the issue being discussed,
+            your role, or the proposal your team worked on.
+          </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="2025 Teen Taiwan President and Youth Forum Proposal" src="image/Policy_slides.png"/>
+<div class="photo-caption">
+<h3>Policy Proposal</h3>
+<p>
+            In 2025, our team sent a proposal to the forum.
+            We proposed a mentor-support system for Taiwan Global Pathfinders, helping students turn overseas dreams into structured, feasible plans and make better use of government funding. 
+            BusinessToday Journal stated that our proposal was forwarded to government agencies.
+        </p>
+</div>
+</div>
+<div class="photo-item">
+<img alt="2025 Teen Taiwan President and Youth Forum Event" src="image/Policy_picture.jpeg"/>
+<div class="photo-caption">
+<h3>Proposal Presentations</h3>
+<p>
+           120+ students from 30+ schools joined the 2025 Teen Taiwan President and Youth Forum. 
+           Students can take photos and interact directly with President Lai Ching-te.
+          </p>
+</div>
+</div>
+</div> </section> <section class="section section-light photo-page content-page" id="go-page">
+<div class="section-title">
+<p>Photo Gallery</p>
+<h2>Go (Weiqi)</h2>
+<p class="section-intro">
+        This page records my focus, strategic thinking development, and milestones in Go.
+      </p>
+</div>
+<button class="page-nav-button back-link page-back-button" data-page-target="#clubs" type="button">← Back to Clubs</button>
+<div class="photo-list">
+<div class="photo-item">
+<img alt="Go 5-dan Certificate" src="image/Go.jpeg"/>
+<div class="photo-caption">
+<h3>Go 5-dan Certificate</h3>
+<p>
+            I reached 5-dan after years of competiting in competitions with 200+ participants. 
+            During high school, I continued to paly Go online and joined more tournaments.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<section class="section content-page" id="reflection">
+<div class="stage-ornament" aria-hidden="true"></div>
+<div class="section-title">
+<p>Reflection</p>
+<h2>What This Journey Means to Me</h2>
+</div><button class="page-nav-button back-link page-back-button" data-added-back="true" data-page-target="#categories" type="button">← Back to Portfolio Map</button>
+<div class="reflection-box">
+<h3>From Achievement to Inquiry</h3>
+<p>
+        During high school, I gradually learned that academic growth is not only about completing tasks
+        or collecting achievements. Research, debate, competitions, and self-study taught me that
+        meaningful learning begins with asking better questions.
+      </p>
+<p>
+        My interests may seem broad at first: economics, finance, mathematics, language, writing,
+        and public speaking. However, they are connected by one central goal: I want to use analysis
+        and communication to understand the world more deeply.
+      </p>
+</div>
+</section>
+<footer class="footer">
+<p>© 2026 Ann's Learning Portfolio. Built with curiosity, discipline, and reflection.</p>
+</footer>
+<script>
+    /* Mobile Menu Toggle */
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    /* Close mobile menu after clicking a navigation link */
+    const links = document.querySelectorAll(".nav-links a");
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    /* Fade-in animation when elements enter the screen */
+    const fadeElements = document.querySelectorAll(
+      ".fade-in, .category-card, .content-card, .timeline-item, .reflection-box, .photo-item, .book-guide, .journey-book"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    fadeElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+    /* Page-like navigation: hide all content pages until a button/link is clicked */
+    const whooshTransition = document.getElementById("whooshTransition");
+    const curtainTransition = document.getElementById("curtainTransition");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const contentPages = document.querySelectorAll(".content-page");
+    const mainPageIds = ["#home", "#categories"];
+
+    function revealAnimatedElements(container) {
+      const elements = container.querySelectorAll(
+        ".fade-in, .category-card, .content-card, .timeline-item, .reflection-box, .photo-item, .book-guide, .journey-book"
+      );
+
+      elements.forEach((element, index) => {
+        window.setTimeout(() => {
+          element.classList.add("show");
+        }, index * 45);
+      });
+    }
+
+    function activatePage(targetId, shouldUpdateHistory = true) {
+      const target = document.querySelector(targetId);
+
+      if (!target) {
+        return;
+      }
+
+      contentPages.forEach((page) => {
+        page.classList.remove("active-page");
+      });
+
+      if (mainPageIds.includes(targetId)) {
+        document.body.classList.remove("page-open");
+        window.scrollTo({ top: target.offsetTop, behavior: "auto" });
+      } else {
+        document.body.classList.add("page-open");
+        target.classList.add("active-page");
+        revealAnimatedElements(target);
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+
+      if (shouldUpdateHistory) {
+        history.pushState(null, "", targetId);
+      }
+    }
+
+    function playWhooshThenOpen(targetId) {
+      const target = document.querySelector(targetId);
+
+      if (!target) {
+        return;
+      }
+
+      if (prefersReducedMotion) {
+        activatePage(targetId);
+        return;
+      }
+
+      whooshTransition.classList.remove("active");
+      void whooshTransition.offsetWidth;
+      whooshTransition.classList.add("active");
+
+      window.setTimeout(() => {
+        activatePage(targetId);
+      }, 280);
+
+      window.setTimeout(() => {
+        whooshTransition.classList.remove("active");
+      }, 760);
+    }
+
+    function isReflectionOpen() {
+      const reflectionPage = document.querySelector("#reflection");
+      return reflectionPage && reflectionPage.classList.contains("active-page");
+    }
+
+    function playCurtainThenOpen(targetId) {
+      const target = document.querySelector(targetId);
+
+      if (!target) {
+        return;
+      }
+
+      if (prefersReducedMotion || !curtainTransition) {
+        activatePage(targetId);
+        return;
+      }
+
+      curtainTransition.classList.remove("active", "closing");
+      void curtainTransition.offsetWidth;
+
+      activatePage(targetId);
+      curtainTransition.classList.add("active");
+
+      window.setTimeout(() => {
+        curtainTransition.classList.remove("active");
+      }, 1220);
+    }
+
+    function playCurtainCloseThenOpen(targetId) {
+      const target = document.querySelector(targetId);
+
+      if (!target) {
+        return;
+      }
+
+      if (prefersReducedMotion || !curtainTransition) {
+        activatePage(targetId);
+        return;
+      }
+
+      curtainTransition.classList.remove("active", "closing");
+      void curtainTransition.offsetWidth;
+      curtainTransition.classList.add("closing");
+
+      window.setTimeout(() => {
+        activatePage(targetId);
+      }, 620);
+
+      window.setTimeout(() => {
+        curtainTransition.classList.remove("closing");
+      }, 1120);
+    }
+
+    function playTransitionThenOpen(targetId) {
+      if (targetId === "#reflection") {
+        playCurtainThenOpen(targetId);
+      } else if (isReflectionOpen()) {
+        playCurtainCloseThenOpen(targetId);
+      } else {
+        playWhooshThenOpen(targetId);
+      }
+    }
+
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    const pageButtons = document.querySelectorAll(".page-nav-button[data-page-target]");
+
+    internalLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const targetId = link.getAttribute("href");
+
+        if (!targetId || targetId === "#") {
+          return;
+        }
+
+        event.preventDefault();
+        playTransitionThenOpen(targetId);
+      });
+    });
+
+    pageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.pageTarget;
+        playTransitionThenOpen(targetId);
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      const targetId = window.location.hash || "#home";
+      activatePage(targetId, false);
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const targetId = window.location.hash || "#home";
+      activatePage(targetId, false);
+    });
+
+    /* Learning Journey book page turning */
+    const journeyBook = document.getElementById("journeyBook");
+    const bookPages = document.querySelectorAll(".book-page");
+    const bookDots = document.querySelectorAll(".book-dot");
+    const prevPageButton = document.getElementById("prevPage");
+    const nextPageButton = document.getElementById("nextPage");
+    let currentBookPage = 0;
+    let isTurningPage = false;
+
+    function updateBookDots() {
+      bookDots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentBookPage);
+      });
+    }
+
+    function goToBookPage(nextPage) {
+      if (isTurningPage || nextPage === currentBookPage) {
+        return;
+      }
+
+      if (nextPage < 0) {
+        nextPage = bookPages.length - 1;
+      }
+
+      if (nextPage >= bookPages.length) {
+        nextPage = 0;
+      }
+
+      isTurningPage = true;
+
+      const direction = nextPage > currentBookPage ? "next" : "previous";
+      const currentPage = bookPages[currentBookPage];
+      const incomingPage = bookPages[nextPage];
+
+      currentPage.classList.remove("active");
+      incomingPage.classList.add("active");
+
+      if (direction === "next") {
+        currentPage.classList.add("turn-out");
+        incomingPage.classList.add("turn-in");
+      } else {
+        currentPage.classList.add("turn-out-reverse");
+        incomingPage.classList.add("turn-in-reverse");
+      }
+
+      currentBookPage = nextPage;
+      updateBookDots();
+
+      window.setTimeout(() => {
+        bookPages.forEach((page) => {
+          page.classList.remove("turn-out", "turn-in", "turn-out-reverse", "turn-in-reverse");
+        });
+
+        isTurningPage = false;
+      }, 700);
+    }
+
+    function turnToNextPage() {
+      goToBookPage(currentBookPage + 1);
+    }
+
+    if (journeyBook) {
+      journeyBook.addEventListener("click", turnToNextPage);
+      journeyBook.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          turnToNextPage();
+        }
+      });
+    }
+
+    if (prevPageButton) {
+      prevPageButton.addEventListener("click", () => {
+        goToBookPage(currentBookPage - 1);
+      });
+    }
+
+    if (nextPageButton) {
+      nextPageButton.addEventListener("click", turnToNextPage);
+    }
+
+    bookDots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        goToBookPage(Number(dot.dataset.page));
+      });
+    });
+
+    /* Navbar shadow after scrolling */
+    const header = document.querySelector(".site-header");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        header.style.boxShadow = "0 4px 20px rgba(15, 23, 42, 0.08)";
+      } else {
+        header.style.boxShadow = "none";
+      }
+    });
+</script>
+</body>
+</html>
